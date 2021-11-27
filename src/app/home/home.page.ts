@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { City } from 'src/domain/entities/city';
+import { SearchInfo } from 'src/domain/entities/search-info';
+import { LoadSearchedCitiesService } from 'src/domain/services/load-searched-cities.service';
+import { RegisterSearchService } from 'src/domain/services/register-search.service';
 import { SearchCityService } from 'src/domain/services/search-city.service';
 
 @Component({
@@ -12,14 +15,21 @@ import { SearchCityService } from 'src/domain/services/search-city.service';
 export class HomePage {
   cities: City[];
   hasError: boolean = false;
-  lastSearchs: string[];
   errorMessage: string;
+
+  searchedCities: SearchInfo[];
 
   constructor(
     private readonly searchService: SearchCityService,
+    private readonly registerCacheService: RegisterSearchService,
+    private readonly loadCacheService: LoadSearchedCitiesService,
     private readonly router: Router
   ) {
-    this.lastSearchs = []
+  }
+
+  async ionViewDidEnter() {
+    this.searchedCities = await this.loadCacheService.getAll();
+    console.log(this.searchedCities);
   }
 
   async onSearch(query: string) {
@@ -33,7 +43,8 @@ export class HomePage {
     }
   }
 
-  onSelectCity(cityId: string) {
+  async onSelectCity(cityId: string) {
+    await this.registerCacheService.register(Number(cityId));
     this.router.navigateByUrl(`/weather/${cityId}`);
   }
 }

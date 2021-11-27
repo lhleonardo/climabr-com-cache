@@ -31,7 +31,7 @@ export class RegisterSearchService {
       conditionIconUrl: weatherDetails.details[0].conditionIconUrl,
     };
 
-    this.cacheRepository.registerOrReplace({
+    await this.cacheRepository.registerOrReplace({
       city: cityDetails,
       details: cacheDetails,
     });

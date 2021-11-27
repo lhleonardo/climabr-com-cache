@@ -10,7 +10,11 @@ const STORAGE_KEY_PREFIX = '__climabr_cache:search_cities';
 export class LocalStorageSearchCacheRepository
   implements SearchCacheRepository
 {
-  constructor(private storage: Storage) {}
+  private storage: Storage;
+
+  constructor(storage: Storage) {
+    this.storage = storage;
+  }
 
   async registerOrReplace({
     city,
@@ -28,7 +32,9 @@ export class LocalStorageSearchCacheRepository
       city,
     };
 
-    if (cityAlreadyExists) {
+    console.log(cityAlreadyExists);
+
+    if (cityAlreadyExists !== -1) {
       const index = cityAlreadyExists;
 
       searchedCities[index] = newRegistry;
@@ -38,12 +44,20 @@ export class LocalStorageSearchCacheRepository
 
     // salva novamente o JSON
     await this.storage.set(STORAGE_KEY_PREFIX, JSON.stringify(searchedCities));
+
+    console.log("Registrado!");
   }
 
   async getAll(): Promise<SearchInfo[]> {
     const stringInfo = await this.storage.get(STORAGE_KEY_PREFIX);
 
+    if (!stringInfo) {
+      return [];
+    }
+
     const searchedCities: SearchInfo[] = JSON.parse(stringInfo);
+
+    console.log(searchedCities);
 
     return searchedCities;
   }
