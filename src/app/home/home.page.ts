@@ -8,19 +8,24 @@ import { SearchCityService } from 'src/domain/services/search-city.service';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
+
 export class HomePage {
   cities: City[];
   hasError: boolean = false;
+  lastSearchs: string[];
   errorMessage: string;
 
   constructor(
     private readonly searchService: SearchCityService,
     private readonly router: Router
-  ) {}
+  ) {
+    this.lastSearchs = []
+  }
 
   async onSearch(query: string) {
     try {
       this.hasError = false;
+
       this.cities = await this.searchService.search(query);
     } catch (error) {
       this.hasError = true;
