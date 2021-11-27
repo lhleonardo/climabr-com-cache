@@ -1,8 +1,12 @@
-# ClimaBR
+# ClimaBR - Trabalho Final
 
-Uma aplicação simples para consulta à previsão do tempo de cidades brasileiras.
+## Detalhes
 
-# Como usar?
+Essa aplicação trata-se do trabalho final da disciplina de Modelagem de Software. É uma aplicação simples para consulta à previsão do tempo de cidades brasileiras. 
+
+Agora modificada para ver o histórico de cidades acessadas!
+
+## Como usar?
 
 Clone este repositório.
 
@@ -26,4 +30,7 @@ Para abrir a aplicação, execute o comando:
 
 `ionic serve`
 
-Enjoy!
+## Autores
+
+ | [<img src="https://github.com/lhleonardo.png" width=115><br><sub>@lhleonardo</sub>](https://github.com/lhleonardo) <br><sub>Leonardo Braz</sub>| [<img src="https://github.com/pauloafpjunior.png" width=115><br><sub>@pauloafpjunior</sub>](https://github.com/pauloafpjunior) <br><sub>Paulo Júnior</sub>|
+| :---: | :---: |
