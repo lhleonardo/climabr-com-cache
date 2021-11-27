@@ -33,18 +33,25 @@
       <ion-col size-sm="10" offset-sm="1" size-md="8" offset-md="2">
         <div class="title-last-searchs">
           <h3>Últimas consultas</h3>
-          <button>Limpar</button>
+          <button (click)="onClearCityHistory()">Limpar</button>
         </div>
 
-        <div class="cards">
-          <ion-card href="http://localhost:4200/weather/3138203">
+        <div class="searched-cities-history">
+          <ion-card
+            button
+            class="searched-city"
+            *ngFor="let registry of searchedCities"
+            (click)="onSelectCity(registry.city.id)" >
             <ion-card-header>
-              <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="Testing">
+              <img src="{{registry.details.conditionIconUrl}}" alt="Testing">
               <div>
-                <ion-card-subtitle>MG</ion-card-subtitle>
-                <ion-card-title>Lavras</ion-card-title>
+                <ion-card-subtitle>{{registry.city.state}}</ion-card-subtitle>
+                <ion-card-title>{{registry.city.name}}</ion-card-title>
               </div>
             </ion-card-header>
+            <div class="card-temperature">
+              <p>{{registry.details.temp}}ºC</p>
+            </div>
           </ion-card>
         </div>
       </ion-col>

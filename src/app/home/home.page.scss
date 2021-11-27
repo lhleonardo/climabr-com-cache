@@ -46,18 +46,26 @@ div.title-last-searchs {
   display: inline-block;
 }
 
-div.cards {
+div.searched-cities-history {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
 }
 
-ion-card {
+ion-card.searched-city {
   max-width: 400px;
-}
+  position: relative;
 
-ion-card-header {
-  display: flex;
-  flex-direction: row;
+  ion-card-header {
+    display: flex;
+    flex-direction: row;
 
-  align-items: center;
+    align-items: center;
+  }
+
+  div.card-temperature {
+    position: absolute;
+    top: 0;
+    right: 10px;
+  }
+
 }

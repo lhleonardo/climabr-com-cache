@@ -32,8 +32,6 @@ export class LocalStorageSearchCacheRepository
       city,
     };
 
-    console.log(cityAlreadyExists);
-
     if (cityAlreadyExists !== -1) {
       const index = cityAlreadyExists;
 
@@ -44,8 +42,6 @@ export class LocalStorageSearchCacheRepository
 
     // salva novamente o JSON
     await this.storage.set(STORAGE_KEY_PREFIX, JSON.stringify(searchedCities));
-
-    console.log("Registrado!");
   }
 
   async getAll(): Promise<SearchInfo[]> {
@@ -56,8 +52,6 @@ export class LocalStorageSearchCacheRepository
     }
 
     const searchedCities: SearchInfo[] = JSON.parse(stringInfo);
-
-    console.log(searchedCities);
 
     return searchedCities;
   }

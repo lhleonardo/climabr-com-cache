@@ -7,4 +7,8 @@ export class LoadSearchedCitiesService {
   public async getAll(): Promise<SearchInfo[]> {
     return this.cacheRepository.getAll();
   }
+
+  public async clear(): Promise<void> {
+    return this.cacheRepository.clear();
+  }
 }
